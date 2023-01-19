@@ -14,7 +14,7 @@ public struct FlexibleBindingsFeature: ReducerProtocol {
     
     public var body: some ReducerProtocol<FlexibleBindingsState, FlexibleBindingsAction> {
         BindingReducer()
-        Scope(state: \.counterState, action: /FlexibleBindingsAction.counter) {
+        Scope(state: \.counter, action: /FlexibleBindingsAction.counter) {
             CounterFeature()
         }
         Reduce { state, action in
@@ -22,7 +22,7 @@ public struct FlexibleBindingsFeature: ReducerProtocol {
             case .resetControls:
                 state = FlexibleBindingsState()
             case .counter(.decrementButtonTapped):
-                state.sliderValue = Double(min(state.counterState.count, Int(state.sliderValue)))
+                state.sliderValue = Double(min(state.counter.count, Int(state.sliderValue)))
             default:
                 break
             }

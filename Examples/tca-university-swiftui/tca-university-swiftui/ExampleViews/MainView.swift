@@ -129,6 +129,26 @@ public struct MainView: View {
                         }
                     }
                     Section(header: Text("🙋🏻‍♂️ Pre Intermediate")) {
+                        NavigationLink(
+                            destination: SimpleEffectView(
+                                store: store.scope(
+                                    state: \.simpleEffect,
+                                    action: MainAction.simpleEffect
+                                )
+                            )
+                        ) {
+                            Text("Effects").standard
+                        }
+                        NavigationLink(
+                            destination: EffectCancellationView(
+                                store: store.scope(
+                                    state: \.effectCancellation,
+                                    action: MainAction.effectCancellation
+                                )
+                            )
+                        ) {
+                            Text("Effect cancellation").standard
+                        }
                     }
                     Section(header: Text("👨🏻‍💻 Intermediate")) {
                     }

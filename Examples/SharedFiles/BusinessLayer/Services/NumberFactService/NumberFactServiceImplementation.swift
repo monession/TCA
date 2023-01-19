@@ -5,7 +5,6 @@
 //  Created by incetro on 12/12/23.
 //
 
-import Combine
 import Foundation
 
 // MARK: - NumberFactServiceImplementation
@@ -30,15 +29,8 @@ public final class NumberFactServiceImplementation {
 
 extension NumberFactServiceImplementation: NumberFactService {
 
-    public func obtain(number: Int) -> AnyPublisher<String, NumberFactAPIError> {
-        let url = URL(string: "http://numbersapi.com/\(number)").unsafelyUnwrapped
-        return session
-            .dataTaskPublisher(for: url)
-            .map { data, _ in String(decoding: data, as: UTF8.self) }
-            .mapError{ error in
-                .unknown(error.localizedDescription)
-            }
-            .delay(for: 2, scheduler: RunLoop.main)
-            .eraseToAnyPublisher()
+    public func generateFact(number: Int) async throws -> String {
+        let (data, _) = try await session.data(from: URL(string: "http://numbersapi.com/\(number)/trivia").unsafelyUnwrapped)
+        return String(decoding: data, as: UTF8.self)
     }
 }

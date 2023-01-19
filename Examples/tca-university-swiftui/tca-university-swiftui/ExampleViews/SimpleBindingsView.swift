@@ -62,7 +62,7 @@ public struct SimpleBindingsView: View {
                         Spacer()
                         CounterView(
                             store: store.scope(
-                                state: \.counterState,
+                                state: \.counter,
                                 action: SimpleBindingsAction.counter
                             )
                         )
@@ -79,7 +79,7 @@ public struct SimpleBindingsView: View {
                                 get: \.sliderValue,
                                 send: SimpleBindingsAction.moveSlider
                             ),
-                            in: 0...Double(viewStore.counterState.count),
+                            in: 0...Double(viewStore.counter.count),
                             step: 1
                         )
                         .disabled(viewStore.toggleEnabled)

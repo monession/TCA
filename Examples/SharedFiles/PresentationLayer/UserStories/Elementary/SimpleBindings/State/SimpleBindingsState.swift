@@ -65,5 +65,5 @@ public struct SimpleBindingsState: Equatable {
     public var sliderValue = 0.0
 
     /// Max slider value
-    public var counterState = CounterState(count: 13)
+    public var counter = CounterState(count: 13)
 }

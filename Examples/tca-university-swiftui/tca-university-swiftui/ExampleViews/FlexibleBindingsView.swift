@@ -50,7 +50,7 @@ public struct FlexibleBindingsView: View {
                         Spacer()
                         CounterView(
                             store: store.scope(
-                                state: \.counterState,
+                                state: \.counter,
                                 action: FlexibleBindingsAction.counter
                             )
                         )
@@ -64,9 +64,10 @@ public struct FlexibleBindingsView: View {
                         Spacer(minLength: Constants.interspacing)
                         Slider(
                             value: viewStore.binding(\.$sliderValue),
-                            in: 0...Double(viewStore.counterState.count),
+                            in: 0...Double(viewStore.counter.count),
                             step: 1
-                        ).disabled(viewStore.toggleEnabled)
+                        )
+                        .disabled(viewStore.toggleEnabled)
                     }
                     
                     Button("Reset all controls") {

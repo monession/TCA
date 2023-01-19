@@ -13,7 +13,7 @@ import TCA
 public struct SimpleBindingsFeature: ReducerProtocol {
     
     public var body: some ReducerProtocol<SimpleBindingsState, SimpleBindingsAction> {
-        Scope(state: \.counterState, action: /SimpleBindingsAction.counter) {
+        Scope(state: \.counter, action: /SimpleBindingsAction.counter) {
             CounterFeature()
         }
         Reduce { state, action in
@@ -27,7 +27,7 @@ public struct SimpleBindingsFeature: ReducerProtocol {
             case .resetControls:
                 state = SimpleBindingsState()
             case .counter(.decrementButtonTapped):
-                state.sliderValue = Double(min(state.counterState.count, Int(state.sliderValue)))
+                state.sliderValue = Double(min(state.counter.count, Int(state.sliderValue)))
             case .pickValue(let value):
                 state.pickedColor = value
             default:

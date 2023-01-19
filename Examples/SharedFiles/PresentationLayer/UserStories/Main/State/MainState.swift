@@ -46,4 +46,10 @@ public struct MainState: Equatable {
     
     /// FocusStateState instance
     public var focusState = FocusStateState()
+    
+    /// SimpleEffectState instance
+    public var simpleEffect = SimpleEffectState()
+    
+    /// EffectCancellationState instance
+    public var effectCancellation = EffectCancellationState()
 }
